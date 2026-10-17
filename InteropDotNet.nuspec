@@ -16,6 +16,7 @@
         <language>en-US</language>
     </metadata>
     <files>
-        <file src="InteropDotNet\bin\Release\InteropDotNet.dll" target="lib\InteropDotNet.dll" />
+        <file src="InteropDotNet\bin\Release\net20\InteropDotNet.dll" target="lib\net20\InteropDotNet.dll" />
+        <file src="InteropDotNet\bin\Release\net10.0\InteropDotNet.dll" target="lib\net10.0\InteropDotNet.dll" />
     </files>
 </package>

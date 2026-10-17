@@ -1,0 +1,26 @@
+name: Build and native interop
+
+on:
+  push:
+    branches: [master, codex/net10-support]
+  pull_request:
+    branches: [master]
+
+permissions:
+  contents: read
+
+jobs:
+  verify:
+    strategy:
+      fail-fast: false
+      matrix:
+        os: [windows-latest, ubuntu-latest, macos-latest]
+    runs-on: ${{ matrix.os }}
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-dotnet@v4
+        with:
+          dotnet-version: 10.0.x
+      - name: Build both frameworks, test native calls, and verify package
+        shell: pwsh
+        run: ./eng/verify.ps1

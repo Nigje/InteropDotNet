@@ -9,7 +9,11 @@ namespace InteropDotNet
     {
         public static string GetPlatformName()
         {
+#if NET10_0_OR_GREATER
+            return System.Runtime.InteropServices.RuntimeInformation.ProcessArchitecture.ToString().ToLowerInvariant();
+#else
             return IntPtr.Size == sizeof(int) ? "x86" : "x64";
+#endif
         }
 
         public static OperatingSystem GetOperatingSystem()
