@@ -2,7 +2,7 @@ name: Build and native interop
 
 on:
   push:
-    branches: [master, codex/net10-support]
+    branches: [master, feature/net10-support]
   pull_request:
     branches: [master]
 
