@@ -134,6 +134,9 @@ namespace InteropDotNet
             {
                 if (instance == null)
                 {
+#if NET10_0_OR_GREATER
+                    instance = new LibraryLoader(new NativeLibraryLoaderLogic());
+#else
                     var operatingSystem = SystemManager.GetOperatingSystem();
                     switch (operatingSystem)
                     {
@@ -150,6 +153,7 @@ namespace InteropDotNet
                         default:
                             throw new Exception("Unsupported operation system");
                     }
+#endif
                 }
                 return instance;
             }

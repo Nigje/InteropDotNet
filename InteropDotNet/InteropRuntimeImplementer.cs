@@ -21,7 +21,11 @@ namespace InteropDotNet
                 throw new Exception(string.Format("The interface {0} should be public", interfaceType.Name));
 
             var assemblyName = GetAssemblyName(interfaceType);
+#if NET10_0_OR_GREATER
+            var assemblyBuilder = AssemblyBuilder.DefineDynamicAssembly(new AssemblyName(assemblyName), AssemblyBuilderAccess.Run);
+#else
             var assemblyBuilder = Thread.GetDomain().DefineDynamicAssembly(new AssemblyName(assemblyName), AssemblyBuilderAccess.Run);
+#endif
             var moduleBuilder = assemblyBuilder.DefineDynamicModule(assemblyName);
 
             var typeName = GetImplementationTypeName(assemblyName, interfaceType);
